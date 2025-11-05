@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonDeserialize(as = LocalPerson.class)
 public record LocalPerson(
         String name,
-        @JsonPropertyDescription("籍贯") String hometown
+        @JsonPropertyDescription("籍贯（家乡/出生地）") String hometown
 ) implements Person {
 
     @JsonCreator

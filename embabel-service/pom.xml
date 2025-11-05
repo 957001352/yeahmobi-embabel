@@ -7,24 +7,31 @@
     <parent>
         <groupId>com.yeahmobi.embabel</groupId>
         <artifactId>yeahmobi-embabel</artifactId>
-        <version>0.1.4-SNAPSHOT</version>
+        <version>0.2.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.yeahmobi.embabel</groupId>
     <artifactId>embabel-service</artifactId>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>com.embabel.agent</groupId>-->
+<!--            <artifactId>embabel-agent-starter-deepseek</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>com.embabel.agent</groupId>
-            <artifactId>embabel-agent-starter-deepseek</artifactId>
+            <artifactId>embabel-agent-starter-openai</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <!-- Ollama is always included as an option for local model hosting -->
-        <dependency>
-            <groupId>com.embabel.agent</groupId>
-            <artifactId>embabel-agent-starter-ollama</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.embabel.agent</groupId>-->
+<!--            <artifactId>embabel-agent-starter-ollama</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
         <!-- Test Dependencies -->
         <dependency>
             <groupId>com.embabel.agent</groupId>
@@ -44,23 +51,23 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.embabel.agent</groupId>
-            <artifactId>embabel-agent-rag-tika</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.embabel.agent</groupId>
-            <artifactId>embabel-agent-rag-lucene</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.embabel.agent</groupId>-->
+<!--            <artifactId>embabel-agent-rag-tika</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.embabel.agent</groupId>-->
+<!--            <artifactId>embabel-agent-rag-lucene</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <profiles>
         <profile>
             <id>enable-shell</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
                 <dependency>
@@ -85,7 +92,7 @@
         <profile>
             <id>enable-web</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <dependencies>
                 <dependency>

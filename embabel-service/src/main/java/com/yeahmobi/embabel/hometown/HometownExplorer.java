@@ -101,9 +101,9 @@ public class HometownExplorer {
             export = @Export(
                     remote = true,
                     name = "hometownWriteup",
-                    startingInputTypes = {LocalPerson.class, UserInput.class})
+                    startingInputTypes = {LocalPerson.class,LocalFoods.class,LocalAttractions.class, UserInput.class})
     )
-    @Action
+    @Action(cost = 1)
     public Writeup writeupAll(LocalPerson person, LocalFoods foods, LocalAttractions attractions, Ai ai) {
         String foodList = foods.items().stream()
                 .map(item -> "- " + item.name() + "：" + item.description())
@@ -139,13 +139,13 @@ public class HometownExplorer {
 
     /** 生成幽默的旅游推荐文案 */
     @AchievesGoal(
-            description = "生成一篇基于籍贯、美食旅游推荐文案",
+            description = "生成一篇基于籍贯、美食的推荐文案",
             export = @Export(
                     remote = true,
-                    name = "hometownWriteup",
-                    startingInputTypes = {LocalPerson.class, UserInput.class})
+                    name = "localFoodsWriteup",
+                    startingInputTypes = {LocalPerson.class,LocalFoods.class,UserInput.class})
     )
-    @Action
+    @Action(cost = 2)
     public Writeup writeupFood(LocalPerson person, LocalFoods foods, Ai ai) {
         String foodList = foods.items().stream()
                 .map(item -> "- " + item.name() + "：" + item.description())
