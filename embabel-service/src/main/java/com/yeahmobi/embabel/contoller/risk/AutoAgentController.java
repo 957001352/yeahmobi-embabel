@@ -4,6 +4,7 @@ import com.embabel.agent.api.common.autonomy.AgentProcessExecution;
 import com.embabel.agent.api.common.autonomy.Autonomy;
 import com.embabel.agent.api.common.autonomy.ProcessExecutionException;
 import com.embabel.agent.core.ProcessOptions;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class AutoAgentController {
             AgentProcessExecution execution = autonomy.chooseAndRunAgent(userInput, options);
             // 获取 Agent 执行结果
 
-            String result = execution.getOutput().toString(); // 框架返回文本结果
+            String result = new Gson().toJson(execution.getOutput()); // 框架返回文本结果
 
             return ResponseEntity.ok(result);
         } catch (ProcessExecutionException e) {

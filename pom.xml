@@ -22,11 +22,20 @@
         <jackson.version>2.16.2</jackson.version>
         <spring-boot.version>3.4.3</spring-boot.version>
         <lombok.version>1.18.30</lombok.version>
+        <embabel-agent.version>0.2.0-SNAPSHOT</embabel-agent.version>
+        <kotlin.version>2.1.10</kotlin.version>
     </properties>
 
     <modules>
         <module>embabel-service</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -46,12 +55,13 @@
                 <scope>import</scope>
             </dependency>
         </dependencies>
+
     </dependencyManagement>
 
     <repositories>
         <repository>
-            <id>embabel-releases</id>
-            <url>https://repo.embabel.com/artifactory/libs-release</url>
+            <id>nexus-releases</id>
+            <url>http://172.30.10.160:8081/nexus/content/repositories/releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -60,12 +70,14 @@
             </snapshots>
         </repository>
         <repository>
-            <id>embabel-snapshots</id>
-            <url>https://repo.embabel.com/artifactory/libs-snapshot</url>
+            <id>nexus-snapshots</id>
+            <url>http://172.30.10.160:8081/nexus/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
     </repositories>
-
 </project>
