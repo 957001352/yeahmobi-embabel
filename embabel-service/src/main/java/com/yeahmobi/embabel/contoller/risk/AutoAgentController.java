@@ -3,11 +3,15 @@ package com.yeahmobi.embabel.contoller.risk;
 import com.embabel.agent.api.common.autonomy.AgentProcessExecution;
 import com.embabel.agent.api.common.autonomy.Autonomy;
 import com.embabel.agent.api.common.autonomy.ProcessExecutionException;
+import com.embabel.agent.core.Agent;
+import com.embabel.agent.core.AgentScope;
 import com.embabel.agent.core.ProcessOptions;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 
 @RestController
@@ -16,7 +20,9 @@ public class AutoAgentController {
 
 
     @Autowired
-    private Autonomy autonomy; // Embabel-Agent 核心类
+    private Autonomy autonomy;// Embabel-Agent 核心类
+    @Autowired
+    private AgentScope agentScope;
 
     /**
      * 查询某人的家乡美食和景点
@@ -30,7 +36,6 @@ public class AutoAgentController {
 
             // 可以自定义 ProcessOptions，也可以使用默认值
             ProcessOptions options = ProcessOptions.DEFAULT;
-
             // 调用 Autonomy 执行 Agent
             AgentProcessExecution execution = autonomy.chooseAndRunAgent(userInput, options);
             // 获取 Agent 执行结果
@@ -38,9 +43,6 @@ public class AutoAgentController {
             String result = new Gson().toJson(execution.getOutput()); // 框架返回文本结果
 
             return ResponseEntity.ok(result);
-        } catch (ProcessExecutionException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("Agent 执行失败: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("未知错误: " + e.getMessage());

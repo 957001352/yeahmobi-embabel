@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 @SpringBootApplication
 @EnableAgents(
         loggingTheme = LoggingThemes.COLOSSUS
-//        ,mcpServers = {McpServers.DOCKER_DESKTOP}
+        ,mcpServers = {"risk-mcp"}
 )
 @ConfigurationPropertiesScan(
         basePackages = {

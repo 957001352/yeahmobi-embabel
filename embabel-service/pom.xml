@@ -51,6 +51,21 @@
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.yeahmobi.kunlun</groupId>
+            <artifactId>kunlun-models</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.yeahmobi.kunlun</groupId>
+                    <artifactId>kunlun-base-client</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>mybatis-plus-annotation</artifactId>
+                    <groupId>com.baomidou</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>com.embabel.agent</groupId>-->
 <!--            <artifactId>embabel-agent-rag-tika</artifactId>-->
@@ -62,12 +77,22 @@
 <!--            <version>${project.version}</version>-->
 <!--        </dependency>-->
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <!-- 强制全局使用 MyBatis 3.5.16 -->
+            <dependency>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <groupId>com.baomidou</groupId>
+                <version>3.5.16</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <profiles>
         <profile>
             <id>enable-shell</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <dependencies>
                 <dependency>
@@ -92,7 +117,7 @@
         <profile>
             <id>enable-web</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
                 <dependency>

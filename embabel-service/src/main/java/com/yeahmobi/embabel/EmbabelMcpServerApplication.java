@@ -8,8 +8,8 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
 @EnableAgents(
-        loggingTheme = LoggingThemes.STAR_WARS
-//        ,mcpServers = {McpServers.DOCKER_DESKTOP}
+        loggingTheme = LoggingThemes.COLOSSUS
+        ,mcpServers = {"risk-mcp"}
 )
 @ConfigurationPropertiesScan(
         basePackages = {

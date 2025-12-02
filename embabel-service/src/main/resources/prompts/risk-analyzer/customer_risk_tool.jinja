@@ -1,0 +1,42 @@
+输入客户名称：{{input}}
+
+你的任务是：
+
+1. 必须调用 MCP 工具 select_customer_buyer_info：
+   {
+     "customerName": "{{input}}"
+   }
+
+2. 工具返回 JSON 后：
+   - 只使用返回值中的 data 对象
+   - 将 data 完整映射到 CustomerSentimentInformation 结构，必须保证字段完全展开：
+        {
+            "customerCode": ...,
+            "customerBasicRiskQxbInfoIndex": ...,
+            "customerBasicRiskXbtInfo": ...,
+            "internalOpinion": ...
+        }
+   - 属性全部输出，不能省略子字段，不能折叠，不能简写，不能自动截断
+   - customerName 使用用户输入名称
+
+3. 输出要求：
+   - 只输出 CustomerSentimentInformation 的 JSON
+   - 必须输出所有字段及其子字段（包括 null）
+   - 不能包含任何说明文字、注释、text、列表框、标签，只能是 JSON 对象
+
+4. 工具无数据或失败时：
+   - 输出：
+     {
+       "customerCode": null,
+       "customerBasicRiskQxbInfoIndex": null,
+       "customerBasicRiskXbtInfo": null,
+       "internalOpinion": null
+     }
+
+调用格式：
+{
+  "tool": "select_customer_buyer_info",
+  "input": {
+    "customerName": "{{input}}"
+  }
+}
